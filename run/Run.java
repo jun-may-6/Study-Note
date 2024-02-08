@@ -22,12 +22,13 @@ public class Run {
         }
 
         /*학생 종료*/
+        /*===============Run1. 세터를 사용해서 객체 정보 수정===================*/
 
         Employee[] employees = new Employee[10];        //최대 10칸 입력 가능
         int nowEmploy = 0;  //현재 추가된 인원 수
         while(true){        //무한 반복으로 입력받기
 
-            employees[nowEmploy] = new Employee();  //employees[nowEmploy] 칸에 새로운 객체 할당
+            employees[nowEmploy] = new Employee();  //employees[nowEmploy] 칸에 기본 생성자를 이용한 객체 선언
 
             System.out.print("이름을 입력해주세요 : ");      //setter 메소드를 이용하여 현재 배열에 필드에 할당
             employees[nowEmploy].setName(sc.nextLine());
@@ -35,7 +36,7 @@ public class Run {
             employees[nowEmploy].setAge(sc.nextInt());
             System.out.print("키를 입력해주세요 : ");
             employees[nowEmploy].setHeight(sc.nextDouble());
-            System.out.print("몸무게 입력해주세요 : ");
+            System.out.print("몸무게를 입력해주세요 : ");
             employees[nowEmploy].setWeight(sc.nextDouble());
             System.out.print("급여를 입력해주세요 : ");
             employees[nowEmploy].setSalary(sc.nextInt());
@@ -48,12 +49,12 @@ public class Run {
             if(nowEmploy == 10){        //만약 현재 인원이 10명이면 종료
                 break;
             }
-            System.out.println(nowEmploy + "명을 작성하였습니다. 추가하시겠습니까? (y 또는 아무키)");
-            String yes = sc.nextLine();
-            if(!yes.toUpperCase().equals("Y")){        //만약 입력받은게 y나 Y가 아니라면 종료
+
+            System.out.println("계속 하려면 y를 입력해주세요.");
+            if(!sc.nextLine().toUpperCase().equals("Y")){       //입력받은 문자의 대문자가 Y가 아니라면
                 break;
             }
-            }
+            }       //while 종료
 
         for(Employee now : employees){
             System.out.println(now.information());
