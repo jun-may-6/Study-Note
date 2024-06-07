@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .contaicontainer {
+            background: skyblue;
+            width: 100%;
+            height: 100vh;
+            /* 1vh는 화면의 높이 1% */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            width: 100%;
+            height: 100px;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .content {
+            flex-grow: 1;
+            background: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .todo-list {
+            background: white;
+            width: 500px;
+            border: 1px solid black;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 50px;
+        }
+
+        .todo-list label {
+            margin: 20px;
+        }
+
+        .todo-list button {
+            border: none;
+            background: red;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .append-list button {
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            height: 30px;
+        }
+
+        .footer {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            background: black;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+        function Composition() {
+            return (
+                <>
+                    <Header />
+                    <Content />
+                    <Footer />
+                </>
+            )
+        }
+        function Header() {
+            return (
+                <header className="header">
+                    오늘의 할 일!{new Date().toLocaleDateString()}
+                </header>
+            );
+        }
+
+        function Content() {
+            return (
+                <div className="content">
+                    <header>ToDo-List</header>
+                    <ToDoList />
+                </div>
+            )
+        }
+
+
+
+        function ToDoList() {
+            const [inputText, setInputText] = useState('');
+            const [list, setList] = useState([
+                { id: 1, toDo: '리액트 실습', status: false },   //true: 완료
+                { id: 2, toDo: '리액트 복습', status: false }
+            ]);
+            const [nextId, setNextId] = useState(3);
+            const onRemove = (id) => {
+                const changedList = list.filter(info => info.id !== id);
+                setList(changedList);
+            };
+            const onAppend = () => {
+                const changedList = list.concat({
+                    id: nextId,
+                    toDo: inputText,
+                    status: false
+                });
+                setNextId(nextId + 1);
+                setList(changedList);
+                setInputText('');
+            };
+            const onChangeInput = (e) => {
+                setInputText(e.target.value);
+            };
+            const onChangeCheckBox = (id) => {
+                console.log(id);
+                const changedList = list.map(info =>
+                    info.id === id ? { ...info, status: !info.status } : info
+                );
+                setList(changedList);
+            }
+
+            const toDoList = list.map(info =>
+                <li key={info.id}>
+                    <input type="checkbox"
+                        checked={info.status}
+                        onChange={() => onChangeCheckBox(info.id)} />
+                    {info.status ? <del>{info.toDo}</del> : info.toDo}
+                    <button onClick={() => onRemove(info.id)}>X</button>
+                </li>)
+            return (
+                <>
+                    <ul className="todo-list">
+                        {toDoList}
+                    </ul>
+                    <div className="append-list">
+                        <input value={inputText} onChange={onChangeInput} /><button className="append-list" onClick={onAppend}>추가하기</button>
+                    </div>
+                </>
+            )
+        }
+
+        function Footer() {
+            return <div className="footer">Copyright 2022. team-greedy all reights reserved.</div>
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<Composition />);
+    </script>
+</body>
+
+</html>

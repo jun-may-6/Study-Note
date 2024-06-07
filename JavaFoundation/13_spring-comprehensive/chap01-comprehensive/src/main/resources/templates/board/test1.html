@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form class="test" action="test/testMethod?form=1" name="test1">
+    <input name="test1" value="111">
+    <input name="test2" value="222">
+</form>
+
+<form class="test" action="test/testMethod?form=2" name="test2">
+    <input name="test3" value="333">
+    <input name="test4" value="444">
+</form>
+<button type="button" onclick="insert()">추가</button>
+<button type="button" onclick="cns()">테스트</button>
+
+<script>
+    let int = 1;
+    let testList = document.querySelectorAll('.test')
+    function cns(){console.log(testList.length)}
+</script>
+</body>
+</html>

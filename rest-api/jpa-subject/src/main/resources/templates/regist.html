@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="regist" method="post">
+    강의명<input name="name">
+    강사<select name="teacherCode">
+        <th:block th:each="teacher : ${teacherList}">
+            <option th:value="${teacher.teacherCode}" th:text="${teacher.name}"></option>
+        </th:block>
+    </select>
+    개강일<input type="date" name="startDate">
+    <button type="submit">등록</button>
+</form>
+</body>
+</html>
