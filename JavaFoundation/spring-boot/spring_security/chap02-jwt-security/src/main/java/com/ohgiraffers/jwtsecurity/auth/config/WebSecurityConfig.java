@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -29,6 +30,11 @@ public class WebSecurityConfig {
      *
      * @return WebSecurityCustomizer
      */
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer(){
+        return web -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+
+    }
 
 
     /**
@@ -38,6 +44,16 @@ public class WebSecurityConfig {
      * @return SecurityFilterChain
      * @throws Exception
      */
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
+        http.csrf(AbstractHttpConfigurer::disable)      // 백 서버가 따로이므로 세션을 서버에서 관리함. (non-browser) 때문에 사용하지 않음.
+                .addFilterBefore(jwtAuthorizationFilter(), BasicAuthenticationFilter.class) // 토큰 인증 후 사용자 인증정보 셋팅
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   // 세션 관리 정책 설정(상태없음)
+                .formLogin(form->form.disable())    // ?
+                .addFilterBefore(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)  //
+                .httpBasic(basic->basic.disable());
+        return http.build();
+    }
 
 
     /**
@@ -45,6 +61,9 @@ public class WebSecurityConfig {
      *
      * @return JwtAuthorizationFilter
      */
+    private JwtAuthorizationFilter jwtAuthorizationFilter(){
+        return new JwtAuthorizationFilter(authenticationManager());
+    }
 
 
     /**
@@ -52,20 +71,30 @@ public class WebSecurityConfig {
      *
      * @return AuthenticationManager
      */
-
+    @Bean
+    public AuthenticationManager authenticationManager(){
+        return new ProviderManager(customAuthenticationProvider());
+    }
 
     /**
      * description. 사용자의 id와 password를 DB와 비교하여 검증하는 핸들러 메소드
      *
      * @return CustomAuthenticationProvider
      */
-
+    @Bean
+    public CustomAuthenticationProvider customAuthenticationProvider(){
+        return new CustomAuthenticationProvider();
+    }
 
     /**
      * description. 비밀번호를 암호화하는 인코더를 반환하는 메소드
      *
      * @return BCryptPasswordEncoder
      */
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
 
     /**
@@ -73,6 +102,19 @@ public class WebSecurityConfig {
      *
      * @return CustomAuthenticationFilter
      */
+    @Bean
+    public CustomAuthenticationFilter customAuthenticationFilter() {
+
+        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager());
+
+        customAuthenticationFilter.setFilterProcessesUrl("/login");
+        customAuthenticationFilter.setAuthenticationSuccessHandler(customAuthLoginSuccessHandler());
+        customAuthenticationFilter.setAuthenticationFailureHandler(customAuthLoginFailureHandler());
+
+        customAuthenticationFilter.afterPropertiesSet();
+        return customAuthenticationFilter;
+
+    }
 
 
     /**
@@ -80,6 +122,9 @@ public class WebSecurityConfig {
      *
      * @return CustomAuthSuccessHandler
      */
+    private CustomAuthSuccessHandler customAuthLoginSuccessHandler(){
+        return new CustomAuthSuccessHandler();
+    }
 
 
     /**
@@ -87,5 +132,8 @@ public class WebSecurityConfig {
      *
      * @return CustomAuthFailureHandler
      */
+    private CustomAuthFailureHandler customAuthLoginFailureHandler() {
+        return new CustomAuthFailureHandler();
+    }
 
 }

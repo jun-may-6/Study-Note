@@ -13,7 +13,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import java.io.IOException;
 
-public class CustomAuthenticationFilter  {
+public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+    public CustomAuthenticationFilter(AuthenticationManager authenticationManager){
+        super.setAuthenticationManager(authenticationManager);
+    }
+
 
 
     /**
@@ -24,6 +29,19 @@ public class CustomAuthenticationFilter  {
      * @return Authentication
      * @throws AuthenticationException
      */
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+
+        UsernamePasswordAuthenticationToken authRequest;
+
+        try {
+            authRequest = getAuthRequest(request);
+            setDetails(request, authRequest);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return this.getAuthenticationManager().authenticate(authRequest);
+    }
 
 
     /**
@@ -33,5 +51,11 @@ public class CustomAuthenticationFilter  {
      * @return UsernamePasswordAuthenticationToken
      * @throws IOException
      */
+    private UsernamePasswordAuthenticationToken getAuthRequest(HttpServletRequest request) throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, true);
+        LoginDTO user = objectMapper.readValue(request.getInputStream(), LoginDTO.class);
+        return new UsernamePasswordAuthenticationToken(user.getId(), user.getPass());
+    }
 
 }

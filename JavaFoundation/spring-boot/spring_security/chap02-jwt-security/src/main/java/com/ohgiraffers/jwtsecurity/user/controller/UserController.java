@@ -8,9 +8,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
 import java.util.Objects;
 
 @RestController
 public class UserController {
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @PostMapping("/signup")
+    public String signup(@RequestBody User user){
+        user.setUserPass(passwordEncoder.encode(user.getUserPass()));
+        user.setState("Y");
+        User value = userRepository.save(user);
+
+        if(Objects.isNull(value)){
+            return "회원 가입 실패";
+        } else {
+            return "회원 가입 성공";
+        }
+    }
 }

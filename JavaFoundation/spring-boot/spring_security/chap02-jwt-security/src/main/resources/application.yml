@@ -13,5 +13,5 @@ spring:
     password: ohgiraffers
 
 jwt:
-  key: asdkfjlkawdsjfw390r82309rjlkasdfja213498dlk
-  time: 86400000
+  key: asdkfjlkawdsjfw390r82309rjlkasdfja213498dlk  #특수문자 제외하고 작성
+  time: 86400000  #ms(1/1000 초) 현재 만료시간은 하루.

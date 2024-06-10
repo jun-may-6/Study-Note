@@ -1,0 +1,32 @@
+### 회원가입
+POST http://localhost:8080/signup
+Content-Type: application/json
+Accept: */*
+
+{
+  "userId": "user01",
+  "userPass": "pass01",
+  "userName": "판다",
+  "userEmail": "panda@ohgiraffers.com",
+  "role": "USER"
+}
+
+
+### 로그인(비밀번호 포함하기 때문에 post 방식으로 보냄.)
+POST http://localhost:8080/login
+Content-Type: application/json
+Accept: */*
+
+{
+  "id": "user01",
+  "pass": "pass01"
+}
+
+### GET 요청
+GET http://localhost:8080/test
+Authorization: BEARER eyJkYXRlIjoxNzE4MDA0NzE5MjkwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJSb2xlIjoiVVNFUiIsInN1YiI6Im9oZ2lyYWZmZXJzIHRva2VuMSIsInVzZXJOYW1lIjoi7YyQ64ukIiwiZXhwIjoxNzE4MDkxMTE5fQ.nTOi9WA14bxT3gVDcVSGXwV7-HW3IF0yDAywPgKFYjY
+
+### POST 요청
+POST http://localhost:8080/test
+Accept: */*
+Authorization: BEARER eyJkYXRlIjoxNzE4MDA0NzE5MjkwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJSb2xlIjoiVVNFUiIsInN1YiI6Im9oZ2lyYWZmZXJzIHRva2VuMSIsInVzZXJOYW1lIjoi7YyQ64ukIiwiZXhwIjoxNzE4MDkxMTE5fQ.nTOi9WA14bxT3gVDcVSGXwV7-HW3IF0yDAywPgKFYjY
