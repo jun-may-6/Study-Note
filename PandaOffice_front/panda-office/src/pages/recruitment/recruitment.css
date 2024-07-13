@@ -1,0 +1,680 @@
+.mg-bt-27 {
+    margin-bottom: 27px;
+}
+
+/* applicant-title ------------------------------------------------------------------------------------------------------------------------------- */
+.applicant-title,
+.schedule-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* applicant ------------------------------------------------------------------------------------------------------------------------------------------- */
+.applicant-wrap {
+    background-color: #fff;
+    padding-bottom: 30px;
+}
+
+/* applicant-info-title ------------------------------------------------------------------------------------------------------------------------------- */
+.ait-comp {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.ait-ul {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 15px 15px 0 0;
+    background-color: #1E1F31;
+}
+
+.ait-ul li {
+    width: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* applicant-list-item -------------------------------------------------------------------------------------------------------------------------------- */
+.ali-comp {
+    width: 100%;
+    background-color: #fff;
+}
+
+.ali-ul {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.ali-ul:hover {
+    background-color: #c1c1c1;
+    color: #fff;
+}
+
+.ali-ul li {
+    width: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* page ----------------------------------------------------------------------------------------------------------------------------------------- */
+.ali-paging-ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 47px;
+}
+
+.ali-paging-ul li {
+    margin-right: 10px;
+}
+
+.ali-paging-ul li:last-child {
+    margin-right: 0;
+}
+
+.ali-paging-btn {
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #000000;
+}
+
+.ali-paging-btn:hover {
+    background-color: #c1c1c1;
+    color: #fff;
+    border: 1px solid #c1c1c1;
+}
+
+.ali-no-paging-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #c1c1c1;
+    color: #c1c1c1;
+}
+
+.ali-no-paging-btn:hover {
+    background-color: #c1c1c1;
+    color: #fff;
+}
+
+.ali-bd-radius-left {
+    border-radius: 3px 0 0 3px;
+}
+
+.ali-bd-radius-right {
+    border-radius: 0 3px 3px 0;
+}
+
+.ali-btn {
+    cursor: pointer;
+}
+
+/* applicant-search ----------------------------------------------------------------------------------------------------------------------------------------- */
+.as-criteria-wrap {
+    display: flex;
+    /* border: 1px solid #ff0000; */
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.as-main-selected,
+.as-sub-selected,
+.as-search-box {
+    display: flex;
+    align-items: center;
+}
+
+#criteriaSelect,
+#criteriaSubSelect,
+.as-input-box {
+    margin-left: 10px;
+}
+
+#criteriaSelect,
+#criteriaSubSelect {
+    width: 110px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.as-input-box {
+    height: 30px;
+    padding-left: 10px;
+}
+
+.as-search-btn {
+    width: 80px;
+    height: 35px;
+    background-color: #2F3850;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* delete-attribute-css( 푸터 마진 탑 제거 ) ----------------------------------------------------------------------------------------------------------- */
+.delete-attribute-css {
+    margin-top: 0;
+}
+
+/* applicant-modar ( 직접 만든 모달 ) --------------------------------------------------------------------------------------------------------- */
+.modal-bg {
+    background-color: rgba(0, 0, 0, 0.50);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.modal-wrap {
+    width: 600px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px 10px 50px;
+    z-index: 10;
+}
+
+.modal-wrap h1 {
+    font-size: 20px;
+}
+
+.modal-wrap p {
+    width: 80px;
+}
+
+.modal-wrap input {
+    width: 150px;
+    height: 30px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.applicant-info {
+    font-size: 20px;
+    width: 100%;
+    font-weight: bold;
+    border-bottom: 1px solid #696969;
+    margin-bottom: 20px;
+}
+
+.applicant-info-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.applicant-name,
+.applicant-gender,
+.applicant-phone,
+.applicant-age,
+.applicant-email,
+.applicant-address {
+    display: flex;
+    align-items: center;
+}
+
+.applicant-name input,
+.applicant-age input,
+.applicant-phone input {
+    text-align: center;
+    padding-left: 0;
+}
+
+.applicant-name input::placeholder,
+.applicant-email input::placeholder,
+.applicant-phone input::placeholder {
+    font-size: 12px;
+    color: #999;
+}
+
+.modal-btn {
+    text-align: center;
+}
+
+.cancel-btn {
+    width: 80px;
+    height: 35px;
+    background-color: #e3e3e3;
+    color: #000;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.modyfi-btn {
+    width: 80px;
+    height: 35px;
+    background-color: #2F3850;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.delete-btn {
+    width: 80px;
+    height: 35px;
+    background-color: #c02828;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 5px;
+    position: absolute;
+    bottom: 27px;
+    right: 50px;
+}
+
+.wd-420 input {
+    width: 420px;
+}
+
+/* applicant-create-modar -------------------------------------------------------------------------------------------------------------------- */
+.acm-gender,
+.am-gender,
+.acm-address {
+    width: 150px;
+    height: 30px;
+    text-align: center;
+}
+
+.acm-address {
+    margin-bottom: 10px;
+}
+
+/* schedule ------------------------------------------------------------------------------------------------------------------- */
+.schedule-calendar {
+    background-color: #fff;
+    /* border: 1px solid #ff0000; */
+    padding: 20px 15px 0 15px;
+}
+
+/* schedule-create ------------------------------------------------------------------------------------------------------------------- */
+.schedule-calendar,
+.schedule-create {
+    width: 100%;
+    height: 100%;
+    /* background-color: #fff; */
+    /* padding: 30px 30px 0 30px; */
+    /* border-radius: 15px; */
+}
+
+.schedule-create {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.50);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.schedule-form {
+    width: 620px;
+    height: 705px;
+    background-color: #fff;
+    margin-right: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    border-radius: 15px 15px 0 0;
+}
+
+.schedule-title-main {
+    background-color: #2F3850;
+    color: #fff;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px 15px 0 0;
+}
+
+.schedule-input-wrap {
+    padding: 10px 20px 0 20px;
+}
+
+.schedule-calendar-emp {
+    width: 940px;
+    height: 705px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 10px;
+    /* border: 1px solid #000; */
+    text-align: left;
+}
+
+.schedule-label {
+    width: 20%;
+}
+
+.schedule-title-name {
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.schedule-date,
+.schedule-time,
+.schedule-place {
+    width: 50%;
+    text-align: center;
+    height: 30px;
+}
+
+.dis-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.interviewer-list {
+    width: 45%;
+    height: 150px;
+    overflow-y: scroll;
+    border: 1px solid #000;
+}
+
+.add-list {
+    width: 45%;
+    height: 150px;
+    border: 1px solid #000;
+    /* padding-right: 20px; */
+}
+
+.applicant-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.applicant-fixed {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #2F3850;
+    color: #fff;
+}
+
+.applicant-item div {
+    width: 25%;
+    margin-bottom: 5px;
+}
+
+.applicant-hover:hover {
+    background-color: rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+}
+
+.applicant-list {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #000;
+    overflow-y: scroll;
+}
+
+.schedule-memo {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    bottom: 30px;
+    right: -305px;
+    background-color: #fff;
+}
+
+.schedule-memo-title {
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+    background-color: #2F3850;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule-memo-text {
+    width: 300px;
+    height: 200px;
+    resize: none;
+    padding: 5px 0 0 5px;
+}
+
+.schedule-btn {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.schedule-btn button:last-child {
+    width: 80px;
+    height: 35px;
+    background-color: #2F3850;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.schedule-btn button:first-child {
+    width: 80px;
+    height: 35px;
+    background-color: #e3e3e3;
+    color: #000;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.interviewer-job-name,
+.ial-p {
+    background-color: #2F3850;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.job-wrap {
+    padding: 0 20px 20px 20px;
+    padding-left: 30px;
+}
+
+.job-title {
+    font-size: 18px;
+    margin: 5px 0;
+    /* background-color: #1E1F31;
+    color: #fff; */
+}
+
+.emp-name {
+    padding-left: 10px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: flex;
+    /* border: 1px solid #000; */
+    justify-content: space-between;
+    text-align: center;
+    cursor: pointer;
+}
+
+.emp-name:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* interviewer-add-list ------------------------------------------------------------------------------------------------------------------- */
+.ial-li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 20px;
+    margin-top: 5px;
+}
+
+.ial-li:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* schedule-detail-modal  ------------------------------------------------------------------------------------------------------------------- */
+.sdm-wrap {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.50);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.sdm-modal {
+    width: 600px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px 0 50px;
+    z-index: 10;
+}
+
+.sdm-title-name {
+    border-bottom: 1px solid #696969;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.sdm-title,
+.sdm-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sdm-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sdm-container > div > div {
+    width: 250px;
+}
+
+.sdm-emp,
+.sdm-date,
+.sdm-time,
+.sdm-place {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+}
+
+.sdm-memo {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+}
+
+.sdm-emp-name,
+.sdm-date-name,
+.sdm-time-name,
+.sdm-place-name,
+.sdm-memo-name {
+    width: 80px;
+}
+
+.sdm-title-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sdm-emp-job,
+.sdm-startDate,
+.sdm-endDate,
+.sdm-startTime {
+    width: 150px;
+    height: 30px;
+    text-align: initial;
+}
+
+.sdm-emp-job {
+    text-align: start;
+}
+
+.sdm-memo-description {
+    width: 220px;
+    height: 150px;
+    resize: none;
+    padding: 5px 0 0 10px;
+}
+
+.sdm-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+}
+
+.sdm-cancel-btn {
+    width: 80px;
+    height: 35px;
+    background-color: #e3e3e3;
+    color: #000;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sdm-modify-btn {
+    width: 80px;
+    height: 35px;
+    background-color: #2F3850;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sdm-cancel-btn {
+    margin-right: 5px;
+}
+
+.sdm-modify-btn {
+    margin-left: 5px;
+}
