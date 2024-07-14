@@ -23,7 +23,7 @@ export function ApprovalModal({ documentId, line, setApprovalModal }) {
     }, [line]);
 
     const onChangeInput = (e) => {
-        console.log(selectType)
+        console.log(comment)
         setComment(e.target.value)
     }
     const onClickDraft = () => {
@@ -56,7 +56,7 @@ export function ApprovalModal({ documentId, line, setApprovalModal }) {
                                 </tr>
                                 <tr>
                                     <th>코멘트</th>
-                                    <td><input type="text" onChange={onChangeInput}></input></td>
+                                    <td><textarea onChange={onChangeInput} ></textarea></td>
                                 </tr>
                             </table>
                         </div>

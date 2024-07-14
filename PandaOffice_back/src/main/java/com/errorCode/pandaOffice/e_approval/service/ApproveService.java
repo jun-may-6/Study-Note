@@ -27,6 +27,7 @@ public class ApproveService {
                 .ifPresent(line->{
                     line.changeStatus(ApproveType.APPROVE);
                     line.changeHandling(documentRequest.getDate());
+                    line.addComment(documentRequest.getComment());
                 });
         document.getApprovalLineList()
                 .stream()
@@ -50,6 +51,7 @@ public class ApproveService {
                 .ifPresent(line->{
                     line.changeStatus(ApproveType.DENY);
                     line.changeHandling(documentRequest.getDate());
+                    line.addComment(documentRequest.getComment());
                 });
 
         document.getApprovalLineList()
@@ -69,6 +71,7 @@ public class ApproveService {
                 .ifPresent(line->{
                     line.changeStatus(ApproveType.PRE_APPROVE);
                     line.changeHandling(documentRequest.getDate());
+                    line.addComment(documentRequest.getComment());
                 });
 
         document.getApprovalLineList()
@@ -105,6 +108,7 @@ public class ApproveService {
                 .ifPresent(line->{
                     line.changeStatus(ApproveType.ALL_APPROVE);
                     line.changeHandling(documentRequest.getDate());
+                    line.addComment(documentRequest.getComment());
                 });
 
         document.getApprovalLineList()

@@ -93,4 +93,10 @@
 .approval-modal-table input {
     width: 300px;
     height:100px;
+
+}
+.approval-modal-table textarea {
+    width: 300px;
+    height:100px;
+    padding: 10px;
 }

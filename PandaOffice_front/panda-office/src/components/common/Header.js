@@ -51,7 +51,7 @@ function Header() {
                     </div> */}
              {/*이름 , 직급 추가하는 부분 */}
              <div>
-                        <span style={{ fontSize: "18px" }}>김민수 부장님 환영합니다</span>
+                        <span style={{ fontSize: "18px" }}>박준영 대리님 환영합니다</span>
                     </div>
                     <div className="icon">
                         <Link to>

@@ -27,7 +27,8 @@ export function ApprovalLine({ approvalDocument }) {
                                             {line.employee.name}
                                             {line.employee.job.title}
                                         </div>
-                                        {line.approvalAbleList.length > 0 &&
+                                        {
+                                        line.approvalAbleList.length > 0 &&
                                             line.employee.employeeId === approvalDocument.currentEmployee.employeeId &&
                                             <button style={{ marginLeft: "100px" }}
                                                 onClick={() => { onClickApprovalHandler(line) }}>결재</button>

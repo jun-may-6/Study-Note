@@ -167,7 +167,6 @@ public class ApprovalDocumentService {
 
     public void updateApprovalDocument(UpdateApprovalDocumentRequest documentRequest) {
         final ApproveType requestType = ApproveType.fromValue(documentRequest.getType());
-
         switch (requestType) {
             case APPROVE:
                 approveService.approve(documentRequest);
@@ -212,7 +211,7 @@ public class ApprovalDocumentService {
                 .orElseThrow();
         return ApprovalDocumentDetailResponse.builder()
                 .id(entity.getId())
-                .currentEmployee(EmployeeResponse.of(entity.getDraftEmployee()))
+                .currentEmployee(EmployeeResponse.of(currentEmployee))
                 .draftEmployee(EmployeeResponse.of(currentEmployee))
                 .name(entity.getTitle())
                 .templateName(entity.getDocumentTemplate().getTitle())

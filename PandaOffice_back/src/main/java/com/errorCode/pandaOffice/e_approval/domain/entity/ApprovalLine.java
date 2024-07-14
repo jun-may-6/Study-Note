@@ -61,4 +61,8 @@ public class ApprovalLine {
     public void changeHandling(LocalDate date) {
         this.handlingDate = date;
     }
+
+    public void addComment(String comment) {
+        this.comment = comment;
+    }
 }
