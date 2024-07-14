@@ -115,8 +115,7 @@ public class ApproveService {
                 .stream()
                 .filter(line -> line.getOrder() != documentRequest.getOrder()
                         && (line.getStatus() == ApproveType.PENDING || line.getStatus() == ApproveType.SCHEDULED))
-                .findFirst()
-                .ifPresent(nextLine -> nextLine.changeStatus(ApproveType.AFTER_APPROVE));
+                .forEach(nextLine -> nextLine.changeStatus(ApproveType.AFTER_APPROVE));
         document.stateHandler(ApprovalStatus.APPROVE);
         approvalDocumentRepository.save(document);
     }

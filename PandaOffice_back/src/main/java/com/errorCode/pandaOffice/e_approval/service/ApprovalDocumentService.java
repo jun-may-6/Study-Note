@@ -111,7 +111,6 @@ public class ApprovalDocumentService {
         if(approvalStatus != null)
             spec = spec.and(ApprovalDocumentSpecification.eqApprovalType(ApproveType.fromValue(approvalStatus), employeeId));
 
-
         final Page<ApprovalDocument> documents = approvalDocumentRepository.findAll(spec, pageable);
         return documents.map(doc->ApprovalDocumentListResponse.from(doc, employeeId));
     }
