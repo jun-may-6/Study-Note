@@ -17,7 +17,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -106,8 +105,8 @@ public class WebSecurityConfig {
     public CustomAuthenticationFilter customAuthenticationFilter() {
 
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager());
-
-        customAuthenticationFilter.setFilterProcessesUrl("/login");
+        /* 로그인 요청 */
+        customAuthenticationFilter.setFilterProcessesUrl("/login"); /* 이 요청을 가로채서 attemptAuthentication 메소드 호출 */
         customAuthenticationFilter.setAuthenticationSuccessHandler(customAuthLoginSuccessHandler());
         customAuthenticationFilter.setAuthenticationFailureHandler(customAuthLoginFailureHandler());
 

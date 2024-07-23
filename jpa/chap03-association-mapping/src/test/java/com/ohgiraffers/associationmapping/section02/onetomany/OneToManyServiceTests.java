@@ -24,7 +24,7 @@ public class OneToManyServiceTests {
     @Test
     void oneToManyFindTest(){
         //given
-        int categoryCode = 4;
+        int categoryCode = 3;
         //when
         Category category = oneToManyService.findCategory(categoryCode);
         //then

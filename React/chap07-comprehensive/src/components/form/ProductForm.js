@@ -1,6 +1,6 @@
-import {useState} from "react";
+import { useState } from "react";
 
-function ProductForm({product, setForm, imageInput, modifyMode}) {
+function ProductForm({ product, setForm, imageInput, modifyMode }) {
 
 
     const [imageUrl, setImageUrl] = useState(product.productImageUrl);
@@ -9,7 +9,7 @@ function ProductForm({product, setForm, imageInput, modifyMode}) {
     const onChangeHandler = e => {
         setForm && setForm({
             ...product,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
@@ -23,9 +23,9 @@ function ProductForm({product, setForm, imageInput, modifyMode}) {
         const fileReader = new FileReader();
         fileReader.onload = e => {
             const { result } = e.target;
-            if(result) setImageUrl(result);
+            if (result) setImageUrl(result);
         }
-        if(imageInput.current.files[0])
+        if (imageInput.current.files[0])
             fileReader.readAsDataURL(imageInput.current.files[0]);
     }
 
@@ -33,25 +33,25 @@ function ProductForm({product, setForm, imageInput, modifyMode}) {
         <div className="product-section">
             <div className="product-info-div">
                 <div className="product-img-div">
-                    { imageUrl &&
+                    {imageUrl &&
                         <img
                             className="product-img"
                             alt="preview"
-                            src={ imageUrl }
+                            src={imageUrl}
                         />
                     }
                     <input
-                        style={ { display: 'none' }}
+                        style={{ display: 'none' }}
                         type="file"
                         name='productImage'
                         accept='image/jpg,image/png,image/jpeg,image/gif'
-                        ref={ imageInput }
-                        onChange={ onChangeImageUpload }
+                        ref={imageInput}
+                        onChange={onChangeImageUpload}
                     />
                     <button
                         className="product-image-button"
-                        onClick={ onClickImageUpload }
-                        disabled={ !modifyMode }
+                        onClick={onClickImageUpload}
+                        disabled={!modifyMode}
                     >
                         이미지 업로드
                     </button>
@@ -60,89 +60,89 @@ function ProductForm({product, setForm, imageInput, modifyMode}) {
             <div className="product-info-div">
                 <table>
                     <tbody>
-                    <tr>
-                        <td><label>상품이름</label></td>
-                        <td>
-                            <input
-                                name='productName'
-                                placeholder='상품 이름'
-                                className="product-info-input"
-                                onChange={onChangeHandler}
-                                value={product.productName}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>상품가격</label></td>
-                        <td>
-                            <input
-                                name='productPrice'
-                                placeholder='상품 가격'
-                                type='number'
-                                className="product-info-input"
-                                onChange={onChangeHandler}
-                                value={product.productPrice}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>판매 여부</label></td>
-                        <td>
-                            <label>
+                        <tr>
+                            <td><label>상품이름</label></td>
+                            <td>
                                 <input
-                                    type="radio"
-                                    name="status"
+                                    name='productName'
+                                    placeholder='상품 이름'
+                                    className="product-info-input"
                                     onChange={onChangeHandler}
-                                    value="usable"
-                                    checked={product.status === 'usable'}
+                                    value={product.productName}
                                 />
-                                판매
-                            </label> &nbsp;
-                            <label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>상품가격</label></td>
+                            <td>
                                 <input
-                                    type="radio"
-                                    name="status"
+                                    name='productPrice'
+                                    placeholder='상품 가격'
+                                    type='number'
+                                    className="product-info-input"
                                     onChange={onChangeHandler}
-                                    value="disable"
-                                    checked={ product.status === 'disable'}
-                                />판매중단</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>상품 종류</label></td>
-                        <td>
-                            <label><input type="radio" onChange={onChangeHandler} name="categoryCode" value="1"
-                                          checked={product.categoryCode == 1}/> 식사</label> &nbsp;
-                            <label><input type="radio" onChange={onChangeHandler} name="categoryCode" value="2"
-                                          checked={product.categoryCode == 2}/> 디저트</label> &nbsp;
-                            <label><input type="radio" onChange={onChangeHandler} name="categoryCode" value="3"
-                                          checked={product.categoryCode == 3}/> 음료</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>상품 재고</label></td>
-                        <td>
-                            <input
-                                placeholder='상품 재고'
-                                type='number'
-                                name='productStock'
-                                className="product-info-input"
-                                onChange={onChangeHandler}
-                                value={product.productStock}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>상품 설명</label></td>
-                        <td>
-                                    <textarea
-                                        className="textarea-style"
-                                        name='productDescription'
+                                    value={product.productPrice}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>판매 여부</label></td>
+                            <td>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="status"
                                         onChange={onChangeHandler}
-                                        value={product.productDescription}
-                                    ></textarea>
-                        </td>
-                    </tr>
+                                        value="usable"
+                                        checked={product.status === 'usable'}
+                                    />
+                                    판매
+                                </label> &nbsp;
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="status"
+                                        onChange={onChangeHandler}
+                                        value="disable"
+                                        checked={product.status === 'disable'}
+                                    />판매중단</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>상품 종류</label></td>
+                            <td>
+                                <label><input type="radio" onChange={onChangeHandler} name="categoryCode" value="1"
+                                    checked={product.categoryCode == 1} /> 식사</label> &nbsp;
+                                <label><input type="radio" onChange={onChangeHandler} name="categoryCode" value="2"
+                                    checked={product.categoryCode == 2} /> 디저트</label> &nbsp;
+                                <label><input type="radio" onChange={onChangeHandler} name="categoryCode" value="3"
+                                    checked={product.categoryCode == 3} /> 음료</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>상품 재고</label></td>
+                            <td>
+                                <input
+                                    placeholder='상품 재고'
+                                    type='number'
+                                    name='productStock'
+                                    className="product-info-input"
+                                    onChange={onChangeHandler}
+                                    value={product.productStock}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>상품 설명</label></td>
+                            <td>
+                                <textarea
+                                    className="textarea-style"
+                                    name='productDescription'
+                                    onChange={onChangeHandler}
+                                    value={product.productDescription}
+                                ></textarea>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -17,6 +17,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     public CustomAuthenticationFilter(AuthenticationManager authenticationManager){
         super.setAuthenticationManager(authenticationManager);
+
     }
 
 
@@ -29,17 +30,24 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
      * @return Authentication
      * @throws AuthenticationException
      */
+    /* 로그인 요청시 첫번째로 이곳으로 전달 */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
         UsernamePasswordAuthenticationToken authRequest;
 
         try {
+            /* id 비밀번호 추출*/
             authRequest = getAuthRequest(request);
+            /* id, 비밀번호 외에 ip, 세션 id 등의 정보를 디테일에 저장하는 메소드 */
             setDetails(request, authRequest);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        /* getAuthenticationManager = 상속받은 메소드. 현재 필터에 설정된 AuthenticationManager 반환
+        * 기본적으로 인증을 수행하는 인터페이스.
+        * 등록되어있는 여러 AuthenticationProvider 를 순차적으로 인증 시도
+        * 인증에 성공한다면 권한이 담긴 Authentication 객체를 반환한다. */
         return this.getAuthenticationManager().authenticate(authRequest);
     }
 

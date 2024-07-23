@@ -5,7 +5,8 @@ import {callProductCategoryListAPI} from "../../apis/ProductAPICalls";
 import ProductList from "../../components/lists/ProductList";
 import PagingBar from "../../components/common/PagingBar";
 
-function CategoryMain() {
+function 
+CategoryMain() {
 
     const dispatch = useDispatch();
     const { categoryCode } = useParams();

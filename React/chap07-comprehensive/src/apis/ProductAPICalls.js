@@ -4,8 +4,9 @@ import {getProduct, getProducts, success} from "../modules/ProductModules";
 export const callProductListAPI = ({ currentPage = 1}) => {
 
     return async (dispatch, getState) => {
-        const result = await request('GET', `/api/v1/products?page=${currentPage}`);
-        console.log('callProductListAPI result : ',result);
+        const req = `/api/v1/products?page=${currentPage}`
+        const result = await request('GET', req);
+        console.log('callProductListAPI result : ',req);
 
         if(result.status === 200) {
             dispatch(getProducts(result));
