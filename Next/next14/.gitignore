@@ -1,21 +1,3 @@
-# Next.js build output
 .next
-out
-
-# Node modules
+.env
 node_modules
-
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Local env files
-.env*.local
-
-# SWC binaries
-*.node
-
-# Misc
-.DS_Store
-  *.pem
