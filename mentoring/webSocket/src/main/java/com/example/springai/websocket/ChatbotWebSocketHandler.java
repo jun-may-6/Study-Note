@@ -7,6 +7,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+// 실제 프로젝트 패키지명으로 변경 필요
 import com.example.springai.component.OpenAIChatbotComponent;
 
 import lombok.extern.slf4j.Slf4j;
