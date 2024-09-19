@@ -1,6 +1,6 @@
 spring:
   application:
-    name: donut
+    name: example
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost/donut
