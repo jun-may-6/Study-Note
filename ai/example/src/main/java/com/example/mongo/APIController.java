@@ -193,7 +193,6 @@ public class APIController
                 combinedResultsMap.values());
         combinedResults.sort((a, b) -> Double.compare((double) b.get("score")
                 , (double) a.get("score")));
-
         return combinedResults;
     }
 }
