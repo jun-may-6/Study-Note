@@ -10,7 +10,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
-public class BookController {
+public class
+
+BookController {
 
     private static Map<String, Book> books = Map.of(
             "1", new Book("1", "Harry Potter and the Philosopher's Stone", "J.K. Rowling"),

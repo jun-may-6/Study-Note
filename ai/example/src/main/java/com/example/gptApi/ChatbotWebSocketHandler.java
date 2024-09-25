@@ -16,7 +16,6 @@ public class ChatbotWebSocketHandler extends TextWebSocketHandler {
 
     String systemMessage = "사용자 질문에 답변하는 Chatbot Assistant입니다. 상황에 따라서 필요한 함수를 적절하게 호출합니다.";
 
-    @Autowired
     OpenAIChatbotComponent chatbotComponent;
 
     /**
