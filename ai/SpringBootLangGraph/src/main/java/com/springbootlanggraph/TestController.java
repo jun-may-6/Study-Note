@@ -26,7 +26,9 @@ public class TestController{
     @GetMapping("/test")
     public String  test() throws Exception{
         MakeDTOGraph makeDTOGraph = new MakeDTOGraph("a", openAiChatModel,  new IntroduceDTO());
-        var result = makeDTOGraph.buildStateGraph().compile().stream(mapOf());
+        var result = makeDTOGraph.buildStateGraph().compile();
+        var a = result.stream(mapOf("question", "question"));
+
 
         return "/";
     }

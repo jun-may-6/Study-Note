@@ -14,18 +14,19 @@ import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Component
-@Slf4j
 public class OpenAIChatbotComponent {
 
 
-    @Autowired
-    OpenAiChatModel chatModel;
+    private final OpenAiChatModel chatModel;
 
     @Autowired
     FunctionCallbackContext functionCallbackContext;
+
+    public OpenAIChatbotComponent(OpenAiChatModel chatModel) {
+        this.chatModel = chatModel;
+    }
 
     /**
      * 프롬프트, 유저의 메세지를 받아서 답변을 생성하는 함수
