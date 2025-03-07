@@ -1,6 +1,0 @@
-#jdbc driver
-#Wed Feb 14 12:47:30 KST 2024
-password=ohgiraffers
-driver=com.mysql.cj.jdbc.Driver
-user=ohgiraffers
-url=jdbc\:mysql\://localhost/menudb
