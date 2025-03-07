@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>강좌, 강사 관리</h1>
+<button th:onclick="|location.href='@{/search}'|">강좌 코드로 조회(findById)</button>
+<button th:onclick="|location.href='@{/search-all}'|">모든 강좌 조회(findAll)</button>
+<button th:onclick="|location.href='@{/find-by-teacher-select}'|">강사별 조회(queryMethod)</button>
+<button th:onclick="|location.href='@{/find-by-status}'|">퇴사하지 않은 강사 조회(native)</button>
+<button th:onclick="|location.href='@{/regist}'|">새로운 강좌 등록(save)</button>
+<button th:onclick="|location.href='@{/modify}'|">강사 정보 수정(modify)</button>
+<button th:onclick="|location.href='@{/delete}'|">강좌 삭제(delete)</button>
+</body>
+</html>
