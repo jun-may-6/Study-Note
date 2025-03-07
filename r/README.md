@@ -1,2 +1,0 @@
-# EduHive-FrontEnd
-인
