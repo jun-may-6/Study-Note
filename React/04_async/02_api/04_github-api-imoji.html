@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { useState, useEffect } = React;
+
+        /* 요청 주소 : https://api.github.com/emojis 
+         * useState, props, event, 비동기 통신 이용해서 입력 된 값과 일치하는 emoji를 img에 보여주는 프로그램 작성
+         * 일치하는 값이 없을 경우 img를 랜더링하지 않는다.
+        */
+
+        function SearchBox({setSearchWord}) {
+            const [inputText, setInputText] = useState('');
+            const onChangeInput = (e) => {setInputText(e.target.value)}
+            const onClickSubmit = () => {setSearchWord(inputText)}
+            return (
+                <>
+                    <input
+                        type="text"
+                        name="emojiName"
+                        value={inputText}
+                        onChange={onChangeInput}
+                    />
+                    <button onClick={onClickSubmit}>검색</button>
+                </>
+            );
+        }
+
+        function ImageBox({emogiUrl}) {
+            return (
+                emogiUrl ? <img src={emogiUrl}/> :'없음'
+            );
+        }
+
+        function App() {
+            const [emojiList, setEmojiList] = useState({})
+            useEffect(() => {
+                async function emogiAPI() {
+                    const response = await fetch('https://api.github.com/emojis')
+                    const data = await response.json();
+                    console.log(data)
+                    setEmojiList(data);
+                }
+                emogiAPI();
+            }, [])
+            const [searchWord, setSearchWord] = useState('');
+            const [emogiUrl, setEmojiUrl] = useState('');
+            const searchEmojiUrl = (word) => {
+                setSearchWord(word)
+                setEmojiUrl(emojiList[word]||null)
+            }
+            return (
+                <>
+                    <SearchBox setSearchWord={searchEmojiUrl}/>
+                    <br />
+                    <ImageBox emogiUrl={emogiUrl}/>
+                </>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>

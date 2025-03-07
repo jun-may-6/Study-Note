@@ -1,0 +1,69 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+    set('springAiVersion', "1.0.0-M1")
+}
+
+dependencies {
+    /* 스타터 */
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket' //웹소켓
+    implementation 'org.springframework.boot:spring-boot-starter-validation'    //유효성 검사
+
+    /* 롬복 */
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    /* 개발도구 */
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' //자동 새로고침
+    implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter' // ai-
+//    implementation 'org.springframework.boot:spring-boot-starter-security'  //시큐리티
+    implementation 'commons-io:commons-io:2.11.0'   // 파일 인풋 아웃풋
+
+    /* DB */
+    implementation 'com.mysql:mysql-connector-j'    //MySQL
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'  //마이바티스
+
+    /* JWT */
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    /* TEST */
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.security:spring-security-test'
+    
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    }
+}
+tasks.named('test') {
+    useJUnitPlatform()
+}

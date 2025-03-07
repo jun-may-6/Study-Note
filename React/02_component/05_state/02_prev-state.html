@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        /* state
+        컴포넌트 내부에서 바뀔 수 있는 값을 의미한다.
+        props 는 부모 컴포넌트가 설정하고 주는 읽기 전용 값이지만,
+        state는 컴포넌트 내부에서 설정되는 값이다. */
+
+        class Counter extends React.Component {
+            /* 생성자 함수 없이 클래스의 속성으로 state 추가 가능.
+            이 때 this. 사용은 불가능하다. */
+            state = {
+                number: 0
+            }
+            render() {   // state 변경-> 랜더링을 위한 메소드 호출
+                const { number } = this.state;
+                console.log(this.state);
+
+                return (
+                    <>
+                        <h1 style={number < 0 ? { color: 'red' } : { color: "blue" }}>Count: {number}</h1>
+                        <button onClick={() => this.setState({ number: number - 1 })}>-1</button>
+                        <button onClick={() => {
+                            console.log(`number: ${this.state.number}`);
+                            this.setState((prevState, props)=>{ // prevState = 메모리 상에서 관리되고 있는 state(함수형 업데이트)
+                                return {
+                                    number: prevState.number + 1
+                                };
+                            });
+                            console.log(`number: ${this.state.number}`);
+                            this.setState(prevState => ({number: prevState.number + 1}));   //사용하지 않는 props 파라미터 생략
+                            console.log(`number: ${this.state.number}`);    
+                            /* setState 는 함수가 끝난 뒤 비동기적으로 작동한다.
+                            때문에 콘솔에는 기존의 state가 찍히며 함수가 종료된 이후 중복사항을
+                            batch 처리하고 연산을 하게된다. */
+                        }}>+1</button>
+                    </>
+                )
+            }
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<Counter />);
+    </script>
+</body>
+
+</html>
