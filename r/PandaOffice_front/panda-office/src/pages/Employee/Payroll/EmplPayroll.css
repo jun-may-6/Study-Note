@@ -1,0 +1,156 @@
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+    border: none;
+    padding-right: 10px;
+}
+
+.button-container button {
+    border: none;
+    border-radius: 7px;
+    padding: 4px 10px;
+    background-color: #DDDDDD;
+    color: #000;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.button-container button:active  {
+    background: #cccccc;
+}
+
+/* ------------------------------------- 데이터 테이블 -------------------------------------------- */
+.emplPay-table-combine {
+    display: flex;
+    flex-direction: column;
+    width: 23%;
+    float: left;
+    margin-right: 20px;
+}
+
+.emplPay-table-container {
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 650px;
+    background: #fff;
+    max-height: 700px;
+}
+
+.emplPay-data-table,
+.emplPay-foot-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+    
+}
+
+.emplPay-data-table th,
+.emplPay-data-table td {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    padding: 8px;
+}
+
+.emplPay-data-table td {
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.emplPay-data-table th:first-child,
+.emplPay-data-table td:first-child {
+    border-left: none;
+}
+
+.emplPay-data-table thead {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    background: #2F3850;
+    color: #fff;
+    line-height: 25px;
+}
+
+.emplPay-foot-table th,
+.emplPay-foot-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    line-height: 15px;
+}
+
+.emplPay-foot {
+    background: #CACACA;
+    border-collapse: collapse;
+}
+
+.emplPay-foot-table tfoot td {
+    text-align: center;
+}
+
+
+/* ------------------------------------- 총합 데이터 테이블 -------------------------------------------- */
+.emplAll-table-combine {
+    display: flex;
+    flex-direction: column;
+    width: 27%;
+    float: left;
+}
+
+.emplAll-container {
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 250px;
+    background: #fff;
+    max-height: 600px;
+}
+
+.emplAll-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+}
+
+.emplAll-data-table thead {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    background: #2F3850;
+    color: #fff;
+    line-height: 25px;
+}
+
+.emplAll-data-table th,
+.emplAll-data-table td {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    padding: 8px;
+}
+
+.emplAll-data-table td {
+    padding-left: 10px;
+    line-height: 15px;
+}
+
+.emplAll-data-table th:first-child,
+.emplAll-data-table td:first-child{
+    border-left: none;
+}
+
+.selected-row {
+    background-color: #ACD4F1;
+}

@@ -1,0 +1,75 @@
+### get 요청 확인
+### startDate - 기안일(min) endDate - 기안일(max) templateId - 양식 ID title -
+### 제목 draftEmployeeName - 기안자 이름 status - 결재 상태 pageSize - 한 페이지 서류 갯수
+GET http://localhost:8001/approval-document?pageSize=10
+Content-Type: application/json
+
+### get 요청 확인
+GET http://localhost:8001/approval-document/8
+Access-Token: Bearer eyJkYXRlIjoxNzIwMzQ2MzU1NDQ4LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcGxveWVlSWQiOiIyMDEyMTEwMDEiLCJleHAiOjM2MDAwMTcyMDM0NjM1NX0.IS5QP8BkB_NDglz2jYqoIKTlHkYckjvB1_7Nd5_F5hon4oGzf5APKNoXPVRa_UVe8r6hrY7cxjP4Fsr2SzF7nQ
+
+### 결재 서류 추가 확인
+POST http://localhost:8001/approval-document
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="documentRequest"; filename="blob"
+Content-Type: application/json
+
+{
+  "title": "제목 테스트",
+  "documentTemplateId": 1,
+  "document": "document Test",
+  "approvalLineList": [
+    {
+      "order": 1,
+      "employeeId": 201511004
+    },
+    {
+      "order": 2,
+      "employeeId": 201511005
+    },
+    {
+      "order": 3,
+      "employeeId": 201514002
+    },
+    {
+      "order": 4,
+      "employeeId": 201515003
+    },
+    {
+      "order": 5,
+      "employeeId": 201513004
+    }
+  ]
+}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="attachedFile"; filename="file.txt"
+Content-Type: text/plain
+
+(텍스트 파일 저장 테스트)
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+GET http://localhost:8001/approval-document/1
+Access-Token: Bearer eyJkYXRlIjoxNzE4OTU4NDg0MTgyLCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcGxveWVlSWQiOiIyMDE5MTEwMjciLCJleHAiOjE3MTg5NjIwODR9.QxVfK2y5PI_x7ex7fw_bzX50UVU3E7FCZJ3NcQFxAOLIV49Nef6ZRwccAjGjYi5JcWE1yeI6qnuCDCMXsbm-0w
+
+### 결재선 수정 테스트
+PUT http://localhost:8001/approval-document
+Access-Token: Bearer eyJkYXRlIjoxNzE5MjgwMDk3OTA4LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcGxveWVlSWQiOiIyMDE1MTUwMDMiLCJleHAiOjE3MTkyODM2OTd9.MuH6LgK-CebofpafPehpqlD4A-ZgFWnd-rNKuLkSEv_PG2y68fHn9kDVyNwreC4yd7dqQAtvJUA9KU5I8Fl-GA
+Content-Type: application/json
+
+{
+  "documentId": 1,
+  "approvalLineId": 2,
+  "type": 2,
+  "comment": "승인"
+}
+
+### GET 폴더 정렬 테스트
+GET http://localhost:8001/approval-document-template-folders
+Access-Token: Bearer eyJkYXRlIjoxNzE5MjgyMjUzMDI3LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcGxveWVlSWQiOiIyMDE1MTUwMDMiLCJleHAiOjIwNzkyODIyNTN9.rqH1HqMSR2x1b00CNm69on4D6CFU7mV5BH6Zay-d5ty5HeWy6ofgZFjb9VXdlhKImq9aC_WH9m-hIa9Fu45eag
+
+###GET
+GET http://localhost:8001/approval-document-template/1
+Access-Token: Bearer eyJkYXRlIjoxNzE5MjgyMjUzMDI3LCJ0eXBlIjoiand0IiwiYWxnIjoiSFM1MTIifQ.eyJzdWIiOiJBY2Nlc3NUb2tlbiIsImVtcGxveWVlSWQiOiIyMDE1MTUwMDMiLCJleHAiOjIwNzkyODIyNTN9.rqH1HqMSR2x1b00CNm69on4D6CFU7mV5BH6Zay-d5ty5HeWy6ofgZFjb9VXdlhKImq9aC_WH9m-hIa9Fu45eag

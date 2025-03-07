@@ -1,0 +1,159 @@
+/* notice */
+.notice-wrap {
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* notice title */
+.noticeList-ui {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 50px;
+    box-sizing: border-box;
+}
+
+.noticeList-title {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 15px 15px 0 0;
+    background-color: #1E1F31;
+    padding: 0;
+    margin: 0;
+    ;list-style: none;
+}
+
+.noticeList-title li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+/* noticeListItem */
+.noticeListItem-wrap {
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.noticeListItem-ui {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.noticeListItem-ui:hover {
+    background-color: #c1c1c1;
+    color: #fff;
+}
+
+.noticeListItem-ui li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* 페이징 */
+.ali-paging-ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 77px;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.ali-paging-btn {
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+.ali-paging-btn:hover {
+    background-color: #c1c1c1;
+    color: #fff;
+    border: 1px solid #c1c1c1;
+}
+
+.ali-no-paging-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #c1c1c1;
+    color: #c1c1c1;
+    box-sizing: border-box;
+}
+
+.ali-no-paging-btn:hover {
+    background-color: #c1c1c1;
+    color: #fff;
+}
+
+.ali-bd-radius-left {
+    border-radius: 3px 0 0 3px;
+}
+
+.ali-bd-radius-right {
+    border-radius: 0 3px 3px 0;
+}
+
+.ali-btn {
+    cursor: pointer;
+}
+
+
+/* 공지사항 등록 페이지 */
+.notice-create {
+    margin: 20px;
+  }
+  
+  .notice-create h2 {
+    margin-bottom: 20px;
+  }
+  
+  .notice-create form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .notice-create form > div {
+    margin-bottom: 10px;
+  }
+  
+  .notice-create form label {
+    margin-right: 10px;
+  }
+  
+  .notice-create form input,
+  .notice-create form select,
+  .notice-create form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  .notice-create form textarea {
+    height: 200px;
+  }
+  
+  .notice-create form button {
+    padding: 10px;
+    margin-right: 10px;
+  }
+  
