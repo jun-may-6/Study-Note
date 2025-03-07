@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/redux@4.2.0/dist/redux.js"></script>
+    <script src="https://unpkg.com/react-redux@8.1.3/dist/react-redux.js"></script>
+    <script src="https://unpkg.com/redux-actions@2.6.5/dist/redux-actions.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        /* Ducks 패턴에 의하면 초기값, 액션, 리듀서를 관련 있는 state 별로 modules 폴더 하위에 관리. */
+        const { createStore } = Redux;
+        const { Provider, useSelector, useDispatch } = ReactRedux;
+
+        const { createAction, createActions, handleActions } = ReduxActions;
+
+        /* 초기 값 */
+        const initialState = 0;
+
+        /* 액션 */
+        /* 액션 타입을 상수로 선언. 접두사는 다른 모듈과 액션 값이 겹치지 않도록 하기 위함이다. */
+        const INCREMENT = 'count/INCREASE';
+        const DECREMENT = 'count/DECREASE';
+        /* 1. createAction 함수 사용 */
+        /* 첫 번째 인자: action type 속성
+           두 번째 인자 : 콜백 함수 반환 값이 payload */
+
+        // const increase = createAction(INCREMENT, (amount = 1) => { return { incrementValue: amount } })
+        // const decrease = createAction(DECREMENT, (amount = 1) => { return { decrementValue: amount } })
+
+        
+        /* 2. createActions 함수 사용 */
+        /*  여러 개의 액션 함수를 한 번에 생성할 수 있다.
+            전달하는 객체의 key 값: action type 속성
+            전달하는 객체의 value 값: 함수 반환 값이 payload 속성
+            action type 의 속성명에 따라 반환 되는 객체의 키 값이 결정된다.  */
+        const {count:{increase, decrease}} = createActions({
+            [INCREMENT] : (amount = 1) => ({incrementValue : amount}),
+            [DECREMENT] : (amount = 1) => ({decrementValue : amount})
+        })
+
+        // Reducer 함수 선언
+        /* 3. handleActions 사용
+        첫 번째 인자 : 객체(key - action type, value - state, actions을 전달받아서 state를 반환하는 콜백 함수)
+        두 번째 인자 : state의 초기값 */
+        const reducer = handleActions({
+            [INCREMENT] : (state, {payload : {incrementValue}}) => {
+                return state + incrementValue;
+            },
+            [DECREMENT] : (state, {payload : {decrementValue}}) => {
+                return state - decrementValue;
+            }
+        }, initialState)
+
+        // function reducer(state = initialState, { type, payload }) {
+        //     switch (type) {
+        //         case INCREMENT:
+        //             return state + payload.incrementValue;
+        //         case DECREMENT:
+        //             return state - payload.decrementValue;
+        //         default:
+        //             return state;
+        //     }
+        // }
+        /* ---------------------------------------------------------------- */
+
+
+
+        /* 리듀서 함수를 전달하며 상태 값을 관리할 스토어 생성 */
+
+        function App() {
+            const count = useSelector(state => state);
+            const dispatch = useDispatch();
+
+            const increaseCount = () => {
+                dispatch(increase(5));
+            }
+            const decreaseCount = () => {
+                dispatch(decrease(3));
+            }
+            return (
+                <>
+                    <h1>Count: {count}</h1>
+                    <button onClick={increaseCount}>1 증가</button>
+                    <button onClick={decreaseCount}>1 감소</button>
+                </>
+            )
+        }
+
+        const store = createStore(
+            reducer,
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        );
+        /* Provider 컴포넌트로 store 를 props 로 전달하면 하위 컴포넌트는 store를 자동으로 구동하게 된다.
+        즉, state 가 변경되면 렌더링이 다시 일어난다. */
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <Provider store={store}>
+                <App />
+            </Provider>
+        );
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/redux@4.2.0/dist/redux.js"></script>
+    <script src="https://unpkg.com/react-redux@8.1.3/dist/react-redux.js"></script>
+    <script src="https://unpkg.com/redux-actions@2.6.5/dist/redux-actions.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        /* 리덕스 미들웨어
+        dispatch(action) -> middleware -> reducer(state, action) -> store 저장
+        추가적인 작업 (특정 조건에 따른 액션 무시, 수정, 로깅, 트리거 액션, 함수 호출 등)
+        주로 사용하는 용도는 비동기 작업 처리 (redux-thunk, redux-saga 등)
+         */
+
+         /* 액션을 추가하는 로그 기능을 가지는 간단한 미들 웨어 */
+        const consoleLoggingMiddleware = store => next => action => {
+            console.log(action);            //액션 객체를 출력하는 콘솔 로그 기능
+            const result = next(action);    // 다음 미들웨어 또는 리듀서에게 액션을 전달
+            return result;                  // 반환하는 result 는 dispatch(action)의 결과물
+        }
+
+
+
+        /* ------------------------------------------modules----------------------------------------------- */
+        const { createAction, createActions, handleActions } = ReduxActions;
+
+        /* 초기 값 */
+        const initialState = 0;
+
+        /* 액션 */
+
+        const INCREMENT = 'count/INCREASE';
+        const DECREMENT = 'count/DECREASE';
+
+        const {count:{increase, decrease}} = createActions({
+            [INCREMENT] : (amount = 1) => ({incrementValue : amount}),
+            [DECREMENT] : (amount = 1) => ({decrementValue : amount})
+        })
+
+        // Reducer 함수 선언
+        const reducer = handleActions({
+            [INCREMENT] : (state, {payload : {incrementValue}}) => {
+                return state + incrementValue;
+            },
+            [DECREMENT] : (state, {payload : {decrementValue}}) => {
+                return state - decrementValue;
+            }
+        }, initialState)
+        /* ------------------------------------------UI----------------------------------------------- */
+
+        const { Provider, useSelector, useDispatch } = ReactRedux;
+        function App() {
+            const count = useSelector(state => state);
+            const dispatch = useDispatch();
+
+            const increaseCount = () => {
+                dispatch(increase(5));
+            }
+            const decreaseCount = () => {
+                dispatch(decrease(3));
+            }
+            return (
+                <>
+                    <h1>Count: {count}</h1>
+                    <button onClick={increaseCount}>1 증가</button>
+                    <button onClick={decreaseCount}>1 감소</button>
+                </>
+            )
+        }
+
+        /* --------------------------------- 스토어 ---------------------- -----------*/
+        const { createStore, applyMiddleware, compose } = Redux;
+        const store = createStore(
+            reducer,
+            compose(
+                applyMiddleware(consoleLoggingMiddleware),
+                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+            )
+        );
+        /* --------------------------------------------------------------------------- */
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <Provider store={store}>
+                <App />
+            </Provider>
+        );
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+.editor {
+    display: flex;
+    width: auto;
+    height: 500px;
+    position: relative;
+}
+
+.editor-edit-toolbar{
+    height: 500px;
+    width: 40px;
+    position: absolute;
+    left: -40px;
+    border: 1px solid grey;
+    border-right: none
+}
+.editor-edit-toolbar-icon{
+    margin:5px;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    background-color: grey;
+    border-radius: 5px;
+}
+.editor-edit-toolbar-icon-select{
+    margin:5px;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    background-color: black;
+    border-radius: 5px;
+}
+.editor-edit-toolbar-icon-image{
+    width: 100%;
+    height: 100%;
+}
+.editor-edit-area{
+    border: 1px solid grey;
+    height: 500px;
+    width: 700px;
+    position: relative;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.italic {
+    font-style: italic;
+}

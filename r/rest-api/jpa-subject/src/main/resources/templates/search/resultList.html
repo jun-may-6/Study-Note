@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>강의번호</th>
+        <th>강의명</th>
+        <th>강사번호</th>
+        <th>개강일</th>
+    </tr>
+    <tr th:each="lecture:${lectureList}">
+        <th th:text="${lecture.lectureCode}"></th>
+        <th th:text="${lecture.name}"></th>
+        <th th:text="${lecture.teacherCode}"></th>
+        <th th:text="${lecture.startDate}"></th>
+    </tr>
+    <div id="paging">
+        <button th:onclick="'location.href=\'/search-all?page=' + ${ paging.startPage } + '\''">
+            ⏪
+        </button>
+        <button th:onclick="'location.href=\'/search-all?page=' + ${ paging.currentPage - 1 } + '\''"
+                th:disabled="${ lectureList.first }">
+            ◀
+        </button>
+        <th:block th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage) }">
+            <button th:onclick="'location.href=\'/search-all?page=' + ${ page } + '\''"
+                    th:text="${ page }"
+                    th:disabled="${ paging.currentPage eq page }">
+
+            </button>
+        </th:block>
+        <button th:onclick="'location.href=\'/search-all?page=' + ${ paging.currentPage + 1 } + '\''"
+                th:disabled="${ lectureList.last }">
+            ▶
+        </button>
+        <button th:onclick="'location.href=\'/search-all?page=' + ${ paging.endPage } + '\''">
+            ⏩
+        </button>
+    </div>
+</table>
+</body>
+</html>
